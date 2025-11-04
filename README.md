@@ -142,35 +142,6 @@ pip install -r req.txt
 **Ошибки:**
 - `404 Not Found` - Задача с указанным ID не найдена
 
-## Структура проекта
-
-```
-.
-├── client/                 # Клиентские утилиты и конфигурация
-│   ├── config/
-│   │   └── config.py       # Конфигурация приложения
-│   └── run.py              # Управление жизненным циклом приложения
-├── database/               # Работа с базой данных
-│   ├── db.py               # Модель SQLAlchemy и настройки БД
-│   └── model/
-│       └── models.py       # Сессии и инициализация БД
-├── routers/                # Роутеры API
-│   ├── delete_router.py    # Эндпоинты удаления
-│   ├── get_router.py       # Эндпоинт получения задач
-│   ├── post_router.py      # Эндпоинт создания задачи
-│   └── put_router.py       # Эндпоинт обновления задачи
-├── schemas/                # Pydantic схемы
-│   ├── create_task/
-│   │   └── create_task.py  # Схема для создания задачи
-│   ├── delete_schema/
-│   │   └── delete_schema.py # Схема для удаления задачи
-│   ├── patch_schema/
-│   │   └── patch_schema.py # Схема для обновления задачи
-│   └── return_schema.py    # Схемы ответов API
-├── main.py                 # Основной файл приложения
-├── req.txt                 # Зависимости Python
-└── README.md               # Этот файл
-```
 
 ## База данных
 
