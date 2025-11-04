@@ -9,12 +9,19 @@ from schemas.delete_schema.delete_schema import DeleteSchema
 from schemas.patch_schema.patch_schema import PatchSchema
 from schemas.return_schema import ResponseDELETESchema, ResponseGetSchema, ResponsePOSTSchema, ResponsePATCHSchema
 
+from client.config.config import get_description, get_summary
+
+
 get_router = APIRouter(
     tags=["Посмотреть все таски"],
     prefix="/todo"
 )
 
-@get_router.get("/read", response_model=ResponseGetSchema)
+@get_router.get(
+    "/read",
+    summary=get_summary,
+    description=get_description,
+    response_model=ResponseGetSchema)
 async def read_task(db: AsyncSession = Depends(get_session)):
     result = await db.execute(select(Todo))
     get_todo_all = result.scalars().all()
