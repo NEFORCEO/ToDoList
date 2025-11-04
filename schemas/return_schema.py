@@ -7,6 +7,25 @@ class StaticResponse(BaseModel):
     
     model_config = {"from_attributes": True}
     
-class ResponseSchema(BaseModel):
+class ResponseGetSchema(BaseModel):
     status: int 
     result: list[StaticResponse] 
+    
+class ResponseGETINTSchema(BaseModel):
+    status: int
+    result: StaticResponse
+    
+    
+class ResponsePOSTSchema(BaseModel):
+    status: int
+    id: int
+    title: str 
+    task_name: str
+    
+class ResponsePATCHSchema(BaseModel):
+    status: int 
+    title: str
+    
+class ResponseDELETESchema(BaseModel):
+    status: int 
+    result: str 
