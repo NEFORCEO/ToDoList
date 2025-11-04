@@ -8,13 +8,18 @@ from database.model.models import get_session
 from schemas.delete_schema.delete_schema import DeleteSchema
 from schemas.return_schema import ResponseDELETESchema
 
+from client.config.config import delete_description, delete_summary 
 
 delete_router = APIRouter(
     tags=["Удалить таску"],
-    prefix="/delete"
+    prefix="/delete",
 )
 
-@delete_router.delete("/delete/task/", response_model=ResponseDELETESchema)
+@delete_router.delete(
+    "/delete/task/",
+    summary=delete_summary,
+    description=delete_description,
+    response_model=ResponseDELETESchema)
 async def delete_task(param: DeleteSchema, db: AsyncSession = Depends(get_session)):
     gang = await db.execute(select(Todo).filter(Todo.id == param.id))
     result = gang.scalar_one_or_none()
