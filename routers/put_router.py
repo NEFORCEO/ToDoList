@@ -9,13 +9,19 @@ from database.model.models import get_session
 from schemas.patch_schema.patch_schema import PatchSchema
 from schemas.return_schema import ResponsePATCHSchema
 
+from client.config.config import patch_description, patch_summary
 
 put_router = APIRouter(
     tags=["Обновить таску"],
     prefix="/put"
 )
 
-@put_router.patch("/patch/task/{id}", response_model=ResponsePATCHSchema)
+@put_router.patch(
+    "/patch/task/{id}", 
+    summary=patch_summary,
+    description=patch_description,
+    response_model=ResponsePATCHSchema
+)
 async def patch_task(id: int, param: PatchSchema, db: AsyncSession = Depends(get_session)):
     gang = await db.execute(select(Todo).filter(Todo.id == id))
     result = gang.scalar_one_or_none() 
