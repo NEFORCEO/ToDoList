@@ -14,6 +14,5 @@ class Todo(Base):
     __tablename__ = "Todo List"
     
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    title_task: Mapped[str] = mapped_column(String, index = True)
+    title: Mapped[str] = mapped_column(String, index=True) 
     task_name: Mapped[str] = mapped_column(String, index=True)
-    
