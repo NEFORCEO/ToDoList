@@ -8,12 +8,18 @@ from database.model.models import get_session
 from schemas.create_task.create_task import CreateTask
 from schemas.return_schema import ResponsePOSTSchema
 
+from client.config.config import post_sumary, post_description
 
 post_router = APIRouter(
     tags=["Добавить таску"]
 )
 
-@post_router.post("/create/task", response_model=ResponsePOSTSchema)
+@post_router.post(
+    "/create/task",
+    summary=post_sumary,
+    description=post_description,
+    response_model=ResponsePOSTSchema
+)
 async def create_task(param: CreateTask, db: AsyncSession = Depends(get_session)):
     result = await db.execute(select(Todo).filter(Todo.title == param.title))
     existing_task = result.scalar_one_or_none()
